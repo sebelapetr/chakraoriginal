@@ -1,0 +1,22 @@
+<div class="col-sm-12">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="row" style="text-align: center">
+                <a href="{link Produkt:default, $products[0]->id}">
+                    <img src="{$basePath}/img/produkty/{$products[0]->image}" style="width: 100%;padding: 15px">
+                    <h3 style="font-size: 22px" class="font-weight-light m-auto">{$products[0]->productName}</h3>
+                    <label style="color: black;font-weight: 100;font-size: 21px;width: 100%;">{$products[0]->catalogPriceVat} Kč</label>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="row" style="text-align: center">
+                <a href="{link Produkt:default, $products[1]->id}">
+                    <img src="{$basePath}/img/produkty/{$products[1]->image}" style="width: 100%;padding: 15px">
+                    <h3 style="font-size: 22px" class="font-weight-light m-auto">{$products[1]->productName}</h3>
+                    <label style="color: black;font-weight: 100;font-size: 21px;width: 100%;">{$products[1]->catalogPriceVat} Kč</label>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

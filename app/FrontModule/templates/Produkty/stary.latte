@@ -1,0 +1,61 @@
+{block title}{$category->categoryName|noescape}{/block}
+{ifset $category->description}{block description}{$category->description|noescape}{/block}{/ifset}
+{block content}
+<h1>{$category->categoryName}</h1>
+{if $products->countStored() === 0}
+    Nebyly nalezeny žádné produkty.
+{else}
+    {foreach $products as $product}
+        <a href="{link Produkt:default $product->id}">
+            <img src="{$basePath}/img/products/{$product->image}" alt="{$product->productName|noescape}" width="250" height="250"/>
+        </a>
+
+            <a href="{link Produkt:default $product->id}">{$product->productName|noescape}</a>
+
+        <h2>{$product->catalogPriceVat} Kč</h2>
+
+        {if $product->inStock}
+            {switch $product->stockLevel}
+                {case 0}
+                <p>Skladem < 3 ks Ihned k odeslání</p>
+                {case 3}
+                <p>Skladem 3-9 ks Ihned k odeslání</p>
+                {case 10}
+                <p>Skladem > 9 ks Ihned k odeslání</p>
+            {/switch}
+        {else}
+            <p>Zboží není skladem</p>
+        {/if}
+        {if !$presenter->isProductInCart($product->id)}
+            <a href="{plink addProductToCart! $product->id, $actualId}" name="add_to_cart">Přidat do košíku</a>
+        {else}
+            <a href="{plink addProductToCart! $product->id, $actualId}" type="submit" name="add_to_cart">Zboží čeká v košíku</a>
+        {/if}
+    {/foreach}
+{/if}
+
+    <ul>
+        <li>
+            <a n:if="$actualPage>1" style="margin:0" href="{link Kategorie:default $actualId, $actualPage-1}">
+                <
+            </a>
+        </li>
+        <li>
+            <a href="{link Kategorie:default $actualId, 1}">1</a>
+        </li>
+        {foreach $pages as $page}
+            <li class="{if $page==$actualPage}active{/if}">
+                <a href="{link Kategorie:default $actualId, $page}">{$page}</a>
+            </li>
+        {/foreach}
+        {if $actualPage!=$lastPage and $actualPage!=$lastPage-1}
+                <li>
+                    <a href="{link Kategorie:default $actualId, $lastPage}">>></a>
+                </li>
+                <li>
+                    <a style="margin:0" href="{link Kategorie:default $actualId, $actualPage+1}">
+                        >
+                    </a>
+                </li>
+        {/if}
+    </ul>

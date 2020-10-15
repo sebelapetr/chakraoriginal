@@ -1,0 +1,256 @@
+{block title}{$product->productName|noescape}{/block}
+{ifset $product->description}{block description}{$product->description|noescape}{/block}{/ifset}
+{block content}
+<div class="container" style="padding-top:150px; padding-bottom: 150px">
+    <div class="row" style="padding: 15px">
+        {*
+        <div class="col-sm-3">
+            <div class="row">
+                <ul class="list-group list-group-flush" style="width: 80%">
+                    <li class="list-group-item" style="  background: #edf6ff;color:black;">Amethyst Spiritual <img src="{$basePath}/img/1.png" height="22" class="float-right"></li>
+                    <li class="list-group-item">Rose quartz self-love <img src="{$basePath}/img/2.png" height="22" class="float-right"></li>
+                    <li class="list-group-item">Crystal Clear <img src="{$basePath}/img/3.png" height="22" class="float-right"></li>
+                    <li class="list-group-item">Obsidian Healing <img src="{$basePath}/img/4.png" height="22" class="float-right"></li>
+                    <li class="list-group-item">Jade harmony <img src="{$basePath}/img/5.png" height="22" class="float-right"></li>
+                    <li class="list-group-item">Náramky <img src="{$basePath}/img/6.png" height="22" class="float-right"></li>
+                    <li class="list-group-item">Plakáty <img src="{$basePath}/img/7.png" height="22" class="float-right"></li>
+                </ul>
+            </div>
+        </div>
+        *}
+
+        <div class="col-sm-12">{*PATH*}
+
+            <a href="{link UvodniStrana:default}">
+                <i class="fa fa-home" style="color:black"></i>
+            </a>
+
+            {foreach $categoryPath as $key=>$path}
+
+                {if $key!=$actualId}
+
+                    <a style="color:black;text-decoration:none;font-weight:300;"><i class="fas fa-angle-right"></i></a><a href="{link Produkty:default $key}" style="color:black;text-decoration:none;font-weight:300;"><u>{$path}</u></a>
+
+                {else}
+
+                    <a style="color:black;text-decoration:none;font-weight:300;"><i class="fas fa-angle-right"></i></a><a href="{link Produkty:default $key}" style="color:black;text-decoration:none;font-weight:300;">{$path}</a>
+
+                {/if}
+
+            {/foreach}
+
+            <a href="{link Produkt:default $product->id}" style="color:black;" class="font-weight-light"><i class="fas fa-angle-right"></i>{$product->productName|noescape}</a>
+
+        </div>{*/PATH*}
+
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+
+                <div class="col-sm-6"  style="text-align: center">
+                                <img src="{$basePath}/img/produkty/{$product->image}" alt="{$product->productName|noescape}" style="height:inherit !important;cursor: pointer;width: 100%;padding: 15px" data-toggle="modal" data-target="#imgModal" />
+                    </div>
+
+
+                        <div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="max-width: 100%">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="width: fit-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{$product->productName|noescape}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <img src="{$basePath}/img/produkty/{$product->image}" alt="{$product->productName|noescape}" class="modal-img" style="width: 100%"/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                <div class="col-sm-6">
+                    <h1 class="font-weight-lighter">{$product->productName}</h1>
+
+
+                    {if $product->code}<p>Kód zboží: {$product->code}</p>{/if}
+                    <p>Kategorie: <a href="{link Produkty:default, $product->category->id}" style="font-weight:300;color:black;text-decoration:underline">{$product->category->categoryName}</a></p>
+                    <h2>{$product->catalogPriceVat} Kč</h2>
+                    <br>
+                    <p style="font-weight:300;color:green;font-size:16px">
+                        {if $product->stockLevel > 0}
+
+                            {if $product->stockLevel < 3}
+                                <a style="color: rgb(255,96,0);font-size:16px">Skladem < 3 ks Ihned k odeslání</a>
+                            {elseif $product->stockLevel >= 3 && $product->stockLevel <= 9}
+                                <a style="color:#50bf16;font-size:16px">Skladem 3-9 ks Ihned k odeslání</a>
+                            {elseif $product->stockLevel > 9}
+                                <a style="color:#50bf16;font-size:16px">Skladem > 9 ks Ihned k odeslání</a>
+                            {/if}
+
+
+                            {*<a style="color:black;margin-top: 5px;display: block"><i class="fas fa-shipping-fast"></i> doručíme do {$deliveryDate|date:'%d.%m.%Y'}</a>*}
+
+                        {else}
+
+                            <a style="color:red;font-size:16px">Zboží není skladem</a>
+
+                        {/if}
+                    </p>
+                    {if !$productInCart}
+                        {control addProductForm}
+                    {else}
+                        <a href="{link Kosik:default}" class="product-detail-waiting-cart"></i>Zboží čeká v košíku</a>
+                    {/if}
+                </div>
+                    </div>
+        </div>
+        <div class="col-sm-12">
+            <br>
+            <p style="font-size:16px;">{$product->description|noescape}</p>
+            {*
+            {if $product->esotericism}
+                <br>
+                <h3 class="font-weight-lighter">Esoterika</h3>
+                <p style="font-size:16px;">{$product->esotericism|noescape}</p>
+                <br>
+            {/if}
+            *}
+        </div>
+        <div class="col-sm-12">{*RECOMMENDED ITEMS*}
+
+            <h2 class="text-center" style="font-weight:300;font-size:24px">Související produkty</h2>
+            <hr>
+
+            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                <div class="col-sm-12">
+                    <div class="row">
+                        {foreach $relatedProducts as $relatedProduct}
+                            <div class="col-sm-3" style="text-align: center">
+                                <a href="{link Produkt:default $relatedProduct->id}"><img src="{$basePath}/img/produkty/{$relatedProduct->image}" alt="{$relatedProduct->productName|noescape}" width="250" height="250" style="object-fit: contain;"/></a>
+
+                                <a href="{link Produkt:default $relatedProduct->id}" style="display:block;height: 60px">{$relatedProduct->productName|noescape}</a>
+                                <h2>{$relatedProduct->catalogPriceVat} Kč</h2>
+                                {if $relatedProduct->stockLevel > 0}
+
+                                    {if $relatedProduct->stockLevel < 3}
+                                        <p style="color: rgb(255,96,0);font-size: 14px">Skladem < 3 ks Ihned k odeslání</p>
+                                    {elseif $relatedProduct->stockLevel > 3 && $relatedProduct->stockLevel < 9}
+                                        <p style="color:#50bf16;font-size: 14px">Skladem 3-9 ks Ihned k odeslání</p>
+                                    {elseif $relatedProduct->stockLevel > 9}
+                                        <p style="color:#50bf16;font-size: 14px">Skladem > 9 ks Ihned k odeslání</p>
+                                    {/if}
+
+                                {else}
+
+                                    <p style="color:red;font-size: 14px">Zboží není skladem</p>
+
+                                {/if}
+                                {if !$relatedProduct->productInCart($relatedProduct->id, $session)}
+                                    <a href="{link addProductToCartFromProduct! $relatedProduct->id, $actualId}"><button class="product-detail-add-to-cart">Koupit</button></a>
+                                {else}
+                                    <a href="{link Kosik:dopravaAPlatba}"><button class="product-detail-waiting-cart">Zboží čeká v košíku</button></a>
+                                {/if}
+                            </div>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12" style="margin-top:40px">{*PRODUCT TABS*}
+
+            <div class="category-tab shop-details-tab">
+
+                {control newQuoteForm}
+
+                {*
+                <div class="col-sm-12">
+                    <ul class="nav nav-tabs" style="border:1px solid #0003;padding-bottom:1Px">
+                        {if !$product->description}
+                            <li  class="active"style="text-align:center !important; width: 100%;background:white"><a href="#companyprofile" data-toggle="tab">Máte dotaz?</a></li>
+                            <li style="text-align:center !important;width: 50%;background:white"><a href="#reviews" data-toggle="tab">Hodnocení</a></li>
+                        {else}
+                            <li class="active" style="text-align:center !important;background:white;width: 50%"><a href="#details" data-toggle="tab">Popis</a></li>
+                            <li style="text-align:center !important;background:white;width: 50%"><a href="#companyprofile" data-toggle="tab">Máte dotaz?</a></li>
+                            <li style="text-align:center !important;background:white"><a href="#reviews" data-toggle="tab">Hodnocení</a></li>
+                        {/if}
+                    </ul>
+                </div>
+                <div class="tab-content">
+
+                    <div class="tab-pane fade {$product->description?'active in':''}" id="details" >
+                        <p>{$product->description|noescape}</p>
+                    </div>
+
+                    <div class="tab-pane fade {$product->description?'':'active in'}" id="companyprofile" >
+
+                        <p>Potřebujete poradit? Využijte náš <b>Online chat v pravém dolním rohu</b>. Pokud zrovna nejsme online můžete použít <b>formulář</b> pod textem, nebo nám napsat <b>email</b> na <b>info@animalko.cz</b></p>
+                        {control newQuoteForm}
+
+                    </div> }
+
+                    <div class="tab-pane fade" id="reviews">
+
+                        <ul>
+                            <li><a href=""><i class="fa fa-user"></i>petr</a></li>
+                            <li><a href=""><i class="fa fa-clock-o"></i>cas</a></li>
+                            {*<li><a href=""><i class="fa fa-calendar-o"></i><?php echo $row_recenze['cas']; ?></a></li>
+                        </ul>
+                        <div class="col-md-12">
+                            <p>obsah</p>
+                        </div>
+                        <div class="col-md-6">
+                            <a style="color:black">+</a>
+                            <p>klady</p>
+                        </div>
+                        <div>
+                            <a style="color:black">-</a>
+                            <p>zapory</p>
+                        </div>
+                        <hr>
+                        <p style='margin-top:15px'>K tomuto produktu dosud nebyla přidělena žádná recenze. Budte první! Napište svoji recenzi k produktu ".$row['jmeno_produkt']."</p><hr>
+                        <p><b>Napište vaši recenzi</b></p>
+                        <p>Po odeslání recenze vyčkejte až správci schváí vaši recenzi.</p>
+                        <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="jmeno" class="form-control" required="required" placeholder="Jméno">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea name="obsah" id="message" class="form-control" rows="8" placeholder="Obsah"></textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <textarea name="klady" id="message" class="form-control" rows="8" placeholder="Klady"></textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <textarea name="zapory" id="message" class="form-control" rows="8" placeholder="Zápory"></textarea>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="submit" name="odeslat_recenzi" class="btn btn-primary pull-right" value="Přidat recenzi">
+                            </div>
+                        </form>
+
+                    </div>
+
+                *}
+
+                </div> {*/TABS*}
+        </div>
+            </div>
+
+        </div>{*/PRODUCT TABS*}
+    </div>
+</div>
+
+<script>
+    var nav = document.getElementById('mainNav');
+    a = nav.getAttribute('class');
+    nav.setAttribute('class', a + ' navbar-shrink');
+    var navbarShrinked = true;
+</script>
+
+

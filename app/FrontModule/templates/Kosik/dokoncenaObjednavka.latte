@@ -1,0 +1,170 @@
+{block robots}noindex, nofollow{/block}
+{block title}Děkujeme za objednávku!{/block}
+{block headJs}
+    <script>
+        fbq('track', 'Purchase', { value: {ceil($total)}, currency: 'CZK' });
+    </script>
+    <!-- Event snippet for Chakra nákup conversion page -->
+    <script>
+        gtag('event', 'conversion', { 'send_to': 'AW-690473910/uNFVCLPKqLYBELaXn8kC', 'value': {ceil($total)}, 'currency': 'CZK', 'transaction_id': {$order->id} });
+    </script>
+    <script>
+        ga('require', 'ecommerce');
+
+        ga('ecommerce:addTransaction', {    // Údaje o objednávce
+            'id': {$order->id},                     // Číslo objednávky. Povinné.
+            'affiliation': 'Chakra',      // Název obchodu.
+            'revenue': {ceil($total)},               // Celková částka za objednávku.
+            'shipping': '1',                  // Doprava.
+            'tax': '0'                     // Daň.
+        });
+
+        {foreach $order->ordersItems as $orderItem}
+            {if $orderItem->type != 2 && $orderItem->type != 3}
+                ga('ecommerce:addItem', {           // údaje o produktu
+                    'id': {$order->id},                     // Číslo objednávky. Povinné.
+                    'name': {$orderItem->name},           // Název produktu. Povinné.
+                    'sku': {$orderItem->product->code},                 // kód produktu.
+                    'category': {$orderItem->product->category->categoryName},            // Kategorie.
+                    'price': {$orderItem->priceVat},                 // Cena za jednotku.
+                    'quantity': {$orderItem->quantity}                   // Množství.
+                });
+            {/if}
+        {/foreach}
+
+        ga('ecommerce:send');               // Odešle údaje do Google Analytics
+    </script>
+{/block}
+{block content}
+
+{if $order->typePayment === 2}
+    {var $state2 = 'Objednávka byla zaplacena čeká na potvrzení'}
+{else}
+    {var $state2 = 'Objednávka byla zaregistrována do systému a čeká na potvrzení'}
+{/if}
+{switch $order->state}
+    {case 0}
+    {var $state = 'Objednávka byla zaregistrována do systému a čeká na zaplacení'}
+    {case 1}
+    {var $state = $state2}
+    {case 2}
+    {var $state = 'Objednávka byla potvrzena a čeká na vybavení'}
+    {case 3}
+    {var $state = 'Objednávka byla vybavena a čeká na odeslání'}
+    {case 4}
+    {var $state = 'Objednávka byla odeslána a čeká na doručení'}
+    {case 5}
+    {var $state = 'Objednávka byla doručena'}
+    {case 6}
+    {var $state = 'Objednávka byla vrácena'}
+    {case 7}
+    {var $state = 'Objednávka byla reklamována'}
+{/switch}
+<div class="container" style="padding-top:150px; padding-bottom: 150px">
+    <div class="row">
+<h2 style="font-size: 20px">Stav objednávky: {$state}</h2>
+    </div>
+    <div class="row">
+<h1 style="font-size: 20px">Děkujeme za objednávku!</h1>
+    </div>
+<p>
+    Vaše objednávka byla úspěšně odeslána. Náš Chakra tým ji nyní zkontroluje a v případě nejasností Vás budeme kontaktovat. Níže zasíláme souhrn.
+</p>
+    <table>
+        <caption>Objednávka<hr></caption>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Název</th>
+            <th>Cena za kus s DPH</th>
+            <th>Počet</th>
+            <th>Cena za produkt celkem s DPH </th>
+        </tr>
+        </thead>
+        {var $totalOrderPrice = 0}
+        {var $totalOrderPriceVat = 0}
+        <tbody>
+        {foreach $order->ordersItems as $items}
+            {var $totalPrice = $items->price*$items->quantity}
+            {var $totalPriceVat = $items->priceVat*$items->quantity}
+            {var $totalOrderPrice += $totalPrice}
+            {var $totalOrderPriceVat += $totalPriceVat}
+            <tr>
+                <td>{ifset $items->product->image}<img src="{$basePath}/img/produkty/{$items->product->image}" alt="{$items->name|noescape}" height="100">{/ifset}</td>
+                <td>{$items->name|noescape}</td>
+                <td>{$items->priceVat} Kč</td>
+                <td>{$items->quantity} ks</td>
+                <td>{$totalPriceVat} Kč</td>
+            </tr>
+        {/foreach}
+        <tr>
+            <td colspan="3"></td>
+            <td><b>Cena celkem s DPH</b></td>
+            <td><b>{ceil($totalOrderPriceVat)} Kč</b></td>
+        </tr>
+        </tbody>
+    </table>
+    <table>
+        <caption>Informace o objednávce<hr></caption>
+        <tr><td>Objednávka byla odeslána:</td> <td>{$order->createdAt|date:'%d.%m.%Y %H:%M:%S'}</td></tr>
+        {*<tr><td>Předpokládané datum dodání:</td> <td>do {$deliveryDate|date:'%d.%m.%Y'}</td></tr>*}
+        <tr><td>Stav objednávky:</td> <td>{$state}</td></tr>
+    </table>
+    <table>
+        <caption>Odběratel<hr></caption>
+        <tr>
+            <td>Jméno:</td>
+            <td>{$order->name} {$order->surname}</td>
+        </tr>
+        <tr>
+            <td>Adresa:</td>
+            <td>{$order->street}</td>
+        </tr>
+        <tr>
+            <td>Město:</td>
+            <td>{$order->city}</td>
+        </tr>
+        <tr>
+            <td>PSČ:</td>
+            <td>{$order->psc}</td>
+        </tr>
+    </table>
+    <table>
+        <caption>Kontaktní údaje<hr></caption>
+        <tr>
+            <td>Telefon:</td>
+            <td>{$order->telephone}</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>{$order->email}</td>
+        </tr>
+        <tr>
+            <td>Poznámka:</td>
+            <td>{$order->note}</td>
+        </tr>
+    </table>
+    {if $order->company}
+        {$order->company}
+        {$order->ico}
+        {$order->dic}
+    {/if}
+    {if $order->deliveryName}
+        {$order->deliveryName}
+        {$order->deliverySurname}
+        {$order->deliveryCompany}
+        {$order->deliveryStreet}
+        {$order->deliveryCity}
+        {$order->deliveryPsc}
+    {/if}
+    </div>
+
+<script type="text/javascript">
+    var nav = document.getElementById('mainNav');
+    a = nav.getAttribute('class');
+    nav.setAttribute('class', a + ' navbar-shrink');
+    var navbarShrinked = true;
+</script>
+
+
+{/block}

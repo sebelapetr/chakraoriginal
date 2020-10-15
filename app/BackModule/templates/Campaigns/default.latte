@@ -1,0 +1,18 @@
+{block content}
+<a n:href="Dashboard:default" class="btn btn-primary" style="margin-top: 15px"><i class="fas fa-chevron-left"></i> Zpět na přehled</a>
+<h2 style="margin-top: 30px">Správa kampaní</h2>
+<hr>
+<div class="col-sm-12" style="margin-top: 30px">
+    <div class="row">
+        {foreach $campaigns as $campaign}
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{$campaign->code}</h5>
+                    <h6 style="color: {$campaign->active ? 'green':'red'}">{$campaign->active ? 'Aktivní':'Neaktivní'}</h6>
+                    {*<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>*}
+                    <a href="{link switchCampaign! $campaign->id}" class="btn btn-primary">{$campaign->active ? 'Vypnout':'Zapnout'}</a>
+                </div>
+            </div>
+        {/foreach}
+    </div>
+</div>

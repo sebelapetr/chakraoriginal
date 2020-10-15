@@ -1,0 +1,23 @@
+<form  n:name="shippingAndPaymentForm">
+    <h2 class="font-weight-light" style="font-size: 23px">Způsob doručení</h2>
+        {foreach $form[shipping]->items as $key => $label}
+            <input n:name="shipping:$key">
+            <label n:name="shipping:$key">{$label}</label>
+            {if $freeDeliveryWeek}
+                <a>- Zdarma</a>
+            {else}
+                <a>{$key===1?' +120 Kč':' - Zdarma'}</a>
+            {/if}
+            <br>
+        {/foreach}
+    <h2 class="font-weight-light" style="font-size: 23px">Způsob platby</h2>
+    {foreach $form[payment]->items as $key => $label}
+        <input n:name="payment:$key">
+        <label n:name="payment:$key">{$label}</label>
+        <a>{$key===1?' +30 Kč':' - Zdarma'}</a>
+        <br>
+    {/foreach}
+    <br>
+    <a href="{plink UvodniStrana:default}" class="product-detail-add-to-cart" style="background: gainsboro;color: black"><i class="fa fa-chevron-left"></i> Zpět do obchodu</a>
+    <input n:name="submit" class="product-detail-add-to-cart">
+</form>

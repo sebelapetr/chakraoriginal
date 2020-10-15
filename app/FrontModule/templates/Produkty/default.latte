@@ -1,0 +1,76 @@
+{block title}{if isset($category)}{$category->categoryName}{else}Produkty{/if}{/block}
+{block content}
+<div class="container" style="padding-top:150px; padding-bottom: 150px">
+    <div class="row">
+        <div class="left-sidebar x290 x490" style="margin: 5px 0 30px 0; width: 100%;" >
+                <div class="panel panel-default">
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="collapse" data-target=".navbar-collapse2" style="width: 100%;background: linear-gradient(to left, #b90d1c, #f14455);height: 50px">
+                        Vyberte kategorii
+                    </button>
+                    <div class="navbar-collapse2" style="height:0;overflow:hidden;z-index:1000;">
+                        {foreach $categories as $categoryMenu}
+                            <a href="{link Produkty:default, $categoryMenu->category->id}" ><li style="border-radius: 0px;font-size: 17px" class="list-group-item menu-item-category">{$categoryMenu->category->categoryName} {*<img src="{$basePath}/img/{$categoryMenu->category->image}" height="22" class="float-right">*}</li></a>
+                        {/foreach}
+                    </div>
+            </div><!--/category-products-->
+        </div>
+    </div>
+    <div class="row">
+
+        {*
+        {include 'menu.latte'}
+        <div class="col-sm-8">
+            *}
+        <div class="col-sm-12">
+            <div class="row" style="padding: 15px;">
+                <h1 class="font-weight-lighter">{if isset($category)}{$category->categoryName}{else}Produkty Chakra Original™{/if}</h1>
+                <p class="font-weight-light" style="font-size: 17px">
+                    {if isset($category)}
+                        {$category->description}
+                    {else}
+
+                    {/if}
+                </p>
+                {if count($products) > 0}
+                  {include $productsLayout}
+                {else}
+                    <p>V této kategorii momentálně nejsou zařazeny žádné produkty.</p>
+                {/if}
+            </div>
+
+            {*
+            <br><br>
+
+            <div class="pagination float-right">
+                {if isset($category)}
+                    {var currentCategory = $category->id}
+                {else}
+                    {var currentCategory = NULL}
+                {/if}
+
+                {if !$paginator->isFirst()}
+                    <a n:href="default, $currentCategory, 1" style="padding: 5px;width: 50px;text-align: center;" class="product-detail-waiting-cart"><i class="fa fa-chevron-left" style="font-size: 15px"></i><i class="fa fa-chevron-left" style="font-size: 15px"></i></a>
+                    &nbsp;
+                    <a n:href="default, $currentCategory, $paginator->page-1" style="padding: 5px;width: 50px;text-align: center;" class="product-detail-waiting-cart"><i class="fa fa-chevron-left" style="font-size: 15px"></i></a>
+                {/if}
+                &nbsp;
+                <a style="padding: 5px;width: 40px;text-align: center;color:white" class="product-detail-waiting-cart">{$paginator->page}</a>
+                &nbsp;
+                {if !$paginator->isLast()}
+                    <a n:href="default, $currentCategory, $paginator->page+1" style="padding: 5px;width: 50px;text-align: center;" class="product-detail-waiting-cart"><i class="fa fa-chevron-right" style="font-size: 15px"></i></a>
+                    &nbsp;
+                    <a n:href="default, $currentCategory, $paginator->pageCount" style="padding: 5px;width: 50px;text-align: center;" class="product-detail-waiting-cart"><i class="fa fa-chevron-right" style="font-size: 15px"></i><i class="fa fa-chevron-right" style="font-size: 15px"></i></a>
+                {/if}
+            </div>
+
+            *}
+        </div>
+    </div>
+</div>
+
+<script>
+    var nav = document.getElementById('mainNav');
+    a = nav.getAttribute('class');
+    nav.setAttribute('class', a + ' navbar-shrink');
+    var navbarShrinked = true;
+</script>

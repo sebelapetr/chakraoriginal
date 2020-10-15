@@ -1,0 +1,233 @@
+{block content}
+<header class="masthead">
+    <div class="container h-100" style="padding-top: 45px">
+        <div class="row h-100">
+            <div class="col-lg-7 my-auto">
+                <div class="header-content mx-auto">
+                    <div class="mobile-div">
+                        <h1 class="mb-5 font-weight-lighter">
+                            Jemnost. <br>
+                            Krása. <br>
+                            Přirozenost.
+                         </h1>
+                    </div>
+                    <h3 class="font-weight-lighter">Objevte novou dimenzi intimní masáže se 100% přírodními ručně vyráběnými pomůckami Chakra Original™ z minerálů a polodrahokamů.</h3>
+                    <br>
+                    <h4 class="font-weight-lighter"><u><a href="{*link ONas:default*}#o-nas" style="color:white">Více o Chakra Original™...</a></u></h4>
+                    <br>
+                   <a href="{link Produkty:}" style="color:white" class="btn btn-success product-detail-show-more"> <h4 class="font-weight-lighter" style="margin: 10px">Produkty Chakra Original™</h4></a>
+                </div>
+            </div>
+            <div class="col-lg-5 my-auto">
+                <div class="device-container">
+                    <img src="{$basePath}/img/main-page.png" height="500" id="mainpage-photo">
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+{*
+<section class="features" id="features">
+    <div class="container">
+        <div class="section-heading text-center">
+            <h2 class="font-weight-lighter">Chakra Original™</h2>
+            <p class="text-muted font-weight-light">Made by Mother Earth</p>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 my-auto">
+                <div class="device-container">
+                    <img src="{$basePath}/img/main2.png" height="500">
+                </div>
+            </div>
+            <div class="col-lg-8 my-auto">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="feature-item">
+                                <h3 class="font-weight-light">Originalita</h3>
+                                <p class="text-muted font-weight-light">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Mauris suscipit.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="feature-item">
+                                <h3 class="font-weight-light">Kvalita</h3>
+                                <p class="text-muted font-weight-light">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Mauris suscipit.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="feature-item">
+                                <h3 class="font-weight-light">Energie</h3>
+                                <p class="text-muted font-weight-light">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Mauris suscipit.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="feature-item">
+                                <h3 class="font-weight-light">Krása</h3>
+                                <p class="text-muted font-weight-light">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Mauris suscipit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+*}
+{*
+<section class="main-page-products">
+    <div>
+        <div class="container">
+            <div class="col-sm-12">
+                <div class="row">
+                    <ul style="list-style: none; width: 100%;margin:0">
+                        {var $first = true}
+                        {foreach $categories as $category}
+                            <a onclick="showCategory( {$category->id} )"><li style="float: left;padding: 9px 16px;font-weight:300;color:white;{if !$first}cursor:pointer;{/if}" id="category-button-{$category->id}" class="{if $first}product-detail-selected{/if}">{$category->categoryName}</li></a>
+                            {var $first = false}
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+            {var $first = true}
+            <div id="products-div">
+            </div>
+            {foreach $categories as $cat}
+                <div style="display: none" id="category-base-div-{$cat->id}">
+                <div class="col-sm-12" id="category-{$cat->id}">
+                    <div class="row">
+                        {foreach $cat->products->get()->findBy(['active' => true])->limitBy(3) as $product}
+                            <div class="col-sm-3">
+                                <div class="row" style="text-align: center">
+                                    <img src="{$basePath}/img/{$product->image}" style="width: 80%;margin: 0 auto; margin-top: 15px; border-radius: 7px">
+                                    <label style="color: white;font-weight: 100;font-size: 21px;width: 100%;">{$product->catalogPriceVat} Kč</label>
+                                    <a href="" style="width: 100%"><button class="product-detail">Detail produktu</button></a>
+                                </div>
+                            </div>
+                        {/foreach}
+                        <div class="col-sm-3">
+                            <div class="row" style="text-align: center">
+                                <a href="{link Produkty:}"><button class="product-detail-show-more" style="margin-top: 100px;padding: 15px">Více produktů...</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                {var $first = false}
+            {/foreach}
+        </div>
+    </div>
+</section>
+*}
+<div id="o-nas"></div>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 font-weight-light">
+                <br>
+                <h1 class="font-weight-lighter m-auto text-center">O Chakra Original™</h1>
+                <br>
+                <p class="text-center m-auto">Minerály, krystaly, polodrahokamy a nejrůznější drahé kameny. Tvořené po miliony a miliony let přirozenými zemskými procesy, vznikající při teplotách až 1.300 °C a tlaku tisíců atmosfér. Těžené, zpracované a vyleštěné do bezchybně hladkého povrchu bez jediného kazu. 100% ručně opracované bez použití jakýchkoliv chemikálií či barviv. Tím vším je značka luxusních přírodních intimních pomůcek Chakra Original™.</p>
+                <br>
+                <p class="text-center m-auto">Každý Chakra je unikátní ručně vyráběný umělecký kus ukrývající v sobě sílu přírody a poskytující hluboké intimní spojení se sebou samotnou či samotným. Obklopení se čistou energií, která prostupuje celým tělem a udržuje energii života v proudu.</p>
+                <br>
+                <p class="text-center m-auto">Chakra pomůcky jsou ale ještě mnohem víc. Vymykají se běžným lascivním erotickým pomůckám, mohou proto představovat velmi funkční prostředky léčení vlastních traumat - po znásilnění, zneužití, zesměšnění při masturbaci či prvním pohlavním styku. Pomáhají probudit sexuální energii, kterou jsme s „pomocí“ jiných, v mnoha případech však dokonce vlastní vinou, ztratili, potlačili či uspali.</p>
+                <br>
+                <p class="text-center m-auto">V neposlední řadě je Chakra také snahou o změnu. Snahou odtabuizovat tak přirozenou součást lidské osobnosti, jakou je její sexualita. Nejde o povrchní instantní sex. Mluvíme o hluboké vnitřní sexualitě, za kterou se není potřeba stydět a není důvod, proč o ní nemluvit. S našimi kamarádkami, dcerami i syny, s našimi partnery. S veřejností. Chceme ukázat, že intimní pomůcky nemusí být lascivní a vulgární a není třeba je prodávat za zalepenými výlohami. Chakra je snahou říct veřejně, že vyfotit se se svým Chakra na sociální sítě je v pořádku a naprosto přirozené. Ponechat si intimitu pro sebe, ale sexualitu prezentovat jako lidskou přirozenost, kterou není nutné skrývat za zamčenými dveřmi.</p>
+                <br>
+                <p class="text-center m-auto">Přejeme nám všem, abychom byli sami sebou!</p>
+                <p style="text-align: center">
+                <a href="{link Produkty:}"><button class="product-detail-show-more" style="margin-top: 50px;padding: 15px">Zobrazit produkty Chakra Original™</button></a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{*
+<section class="contact" id="contact">
+    <div class="container">
+        <h2 class="font-weight-lighter">Sledujte nás na facebooku!</h2>
+        <div class="col-sm-12">
+            <div class="row">
+                <a href="https://www.facebook.com/chakraoriginal/" target="_blank" style="margin:0 auto" class="facebook-btn">Facebook <i class="fab fa-facebook-f"></i></a>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="row">
+                        <img src="{$basePath}/img/insta1.png" style="width: 100%;padding: 15px">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <img src="{$basePath}/img/insta3.png" style="width: 100%;padding: 15px">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <img src="{$basePath}/img/insta4.png" style="width: 100%;padding: 15px">
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="row">
+                        <img src="{$basePath}/img/insta5.png" style="width: 100%;padding: 15px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+*}
+
+<section class="contact" id="contact">
+    <div class="container">
+        <h2 class="font-weight-lighter">Sledujte nás na sociálních sítích!</h2>
+
+        <br>
+
+        <a href="https://www.instagram.com/chakra.original/" target="_blank" class="instagram-btn">Instagram <i class="fab fa-instagram"></i></a>
+        <a href="https://www.facebook.com/chakraoriginal/" target="_blank" class="facebook-btn">Facebook <i class="fab fa-facebook-f"></i></a>
+
+        <div class="col-sm-12">
+            <br><br>
+            <div class="row">
+                <div class="col-sm-3">
+
+                        <img src="{$basePath}/img/insta1.png" style="width: 100%;padding: 15px">
+
+                </div>
+                <div class="col-sm-3">
+
+                        <img src="{$basePath}/img/insta3.png" style="width: 100%;padding: 15px">
+
+                </div>
+                <div class="col-sm-3">
+
+                        <img src="{$basePath}/img/insta4.png" style="width: 100%;padding: 15px">
+
+                </div>
+                <div class="col-sm-3">
+
+                        <img src="{$basePath}/img/insta5.png" style="width: 100%;padding: 15px">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    function showCategory(categoryId) {
+        var products = document.getElementById('category-'+categoryId);
+        document.getElementById('category-button-'+categoryId).className = 'product-detail-selected';
+        var products_div = document.getElementById('products-div');
+
+        products_div.removeChild(products_div.childNodes[0]);
+        products_div.appendChild(products);
+        products.setAttribute('data-products-div-child', 'selected');
+    }
+</script>

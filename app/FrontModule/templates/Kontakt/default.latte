@@ -1,0 +1,70 @@
+{block title}Kontaktujte nás{/block}
+{block content}
+<div class="container" style="padding-top:150px">
+    <div class="row">
+            <div class="col-sm-6">
+                <div class="col-sm-12">
+                    <h3 class="font-weight-light">Kontakt</h3>
+                    <p class="font-weight-light">V případě potřeby nás neváhejte kontaktovat!</p>
+                    <table>
+                        <tr>
+                            <td>Anita: <a href="tel:+420770627333"> +420 770 627 333 </a> (
+                                cz <span class="flag-icon flag-icon-cz flag-icon-squared" style="border-radius: 10px; box-shadow: 0 0 7px -2px black;"></span>,
+                                sk <span class="flag-icon flag-icon-sk flag-icon-squared" style="border-radius: 10px; box-shadow: 0 0 7px -2px black;"></span>,
+                                obchodní vedení, lektorování )
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Petr: <a href="tel:+420770604133"> +420 770 604 133 </a> (
+                                de <span class="flag-icon flag-icon-de flag-icon-squared" style="border-radius: 10px; box-shadow: 0 0 7px -2px black;"></span>,
+                                pl <span class="flag-icon flag-icon-pl flag-icon-squared" style="border-radius: 10px; box-shadow: 0 0 7px -2px black;"></span>,
+                                ru <span class="flag-icon flag-icon-ru flag-icon-squared" style="border-radius: 10px; box-shadow: 0 0 7px -2px black;"></span> )
+                            </td>
+                        </tr>
+                        <tr><td>Denisa: <a href="tel:+420773992193">+420 773 992 193</a> ( en <span class="flag-icon flag-icon-gb flag-icon-squared" style="border-radius: 10px; box-shadow: 0 0 7px -2px black;"></span> )</td></tr>
+                        <tr><td>Email: <a href="mailto:chakra.original@gmail.com"> chakra.original@gmail.com </a></td></tr>
+                    </table>
+                </div>
+                <div class="col-sm-12" style="padding-top: 50px;padding-bottom: 50px">
+
+                    <h3 class="font-weight-light">Fakturační údaje</h3>
+                    <table>
+                        <tr><td>Denisa Langerová</td></tr>
+                        <tr><td>Komenského 46/4</td></tr>
+                        <tr><td>678 01 Blansko</td></tr>
+                        <tr><td>IČ: 08332240</td></tr>
+                    </table>
+                </div>
+            </div>
+        <div class="col-sm-6">
+            <div class="col-sm-12" style="padding-top: 0px">
+                {control newQuoteForm}
+            </div>
+
+            <div class="col-sm-12" style="padding-top: 50px;padding-bottom: 50px">
+                <h3 class="font-weight-light">Galerie Harddecore</h3>
+                <p class="font-weight-light">Kamenný obchod, kde zakoupíte pomůcky Chakra Original™</p>
+
+                <div id="mapa" class="col-sm-12" style="height: 185px"></div>
+                <script type="text/javascript" src="{$basePath}/js/map.js"></script>
+                <br>
+                <table>
+                    <tr><td>Adresa: </td><td> <a target="_blank" href="http://maps.google.com/?q=Harddecore Senovážné nám. 2088/10A, 110 00 Praha 1"> Senovážné nám. 2088/10A, 110 00 Praha 1 </a> </td></tr>
+                </table>
+                <br>
+                <table>
+                    <tr><td>Otevírací doba:</td></tr>
+                    <tr><td>Pondělí - Pátek: 11:00 - 19:00</td></tr>
+                    <tr><td>Sobota: 11:00 - 17:00</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var nav = document.getElementById('mainNav');
+    a = nav.getAttribute('class');
+    nav.setAttribute('class', a + ' navbar-shrink');
+    var navbarShrinked = true;
+</script>

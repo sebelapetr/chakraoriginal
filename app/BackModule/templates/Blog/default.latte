@@ -1,0 +1,31 @@
+{block content}
+<a n:href="Dashboard:default" class="btn btn-primary" style="margin-top: 15px"><i class="fas fa-chevron-left"></i> Zpět na přehled</a>
+<h2 style="margin-top: 30px">Správa článků</h2>
+<hr>
+<a n:href="Blog:edit" class="btn btn-primary">Přidat článek</a>
+<hr>
+<div class="col-sm-12" style="margin-top: 30px">
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Název</th>
+                <th>Vytvořen</th>
+                <th colspan="2" style="text-align: center">Akce</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $articles as $article}
+                <tr>
+                    <td><b>{$article->id}</b></td>
+                    <td>{$article->title}</td>
+                    <td>{$article->createdAt|date:'d. m. Y H:i'}</td>
+                    <td><a href="{link Blog:edit $article->id}" >Upravit</a></td>
+                    <td><a href="{link delete! $article->id}" >Smazat</a></td>
+                </tr>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>

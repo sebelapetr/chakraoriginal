@@ -1,0 +1,42 @@
+{block title}Výsledky hledání pro: {$phrase}{/block}
+{block content}
+<div class="col-sm-12" style="margin-top: 20px;margin-bottom: 20px">
+    <h1 style="font-weight: 300;font-size:27px">Vyhledávání pro: <a style="font-size:31px;color:black">{$phrase}</a></h1>
+    <hr>
+</div>
+<div class="col-sm-12">
+    {foreach $products as $product}
+        <div class="col-sm-3 product">
+            <div class="product-image-wrapper">
+
+                <div class="single-products">
+                    <div class="productinfo text-left">
+                        <a href="{link Vyhledavani:produkt $product->id}">
+                            <img src="{$basePath}/img/products/{$product->image}" alt="{$product->product_name|noescape}" width="250" height="250" style="object-fit: contain;"/>
+                        </a>
+                        <hr style="margin:8px;">
+                        <p>
+                            <a href="{link Vyhledavani:produkt $product->id}" style="display:block;height: 50px">{$product->product_name|noescape}</a>
+                            {*{if ($product->retailPrice)>0 and $product->retailPrice>$product->catalogPriceVat}<h2 class="moc"><strike>{$product->retailPrice} Kč</strike></h2>{/if}*}
+                        <h2>{$product->catalog_price_vat} Kč</h2>
+                        {if $product->in_stock}
+                            {switch $product->stock_level}
+                                {case 0}
+                                <p class="sklad" style="color: rgb(255,96,0)">Skladem < 3 ks Ihned k odeslání</p>
+                            {case 3}
+                                <p class="sklad">Skladem 3-9 ks Ihned k odeslání</p>
+                            {case 10}
+                                <p class="sklad">Skladem > 9 ks Ihned k odeslání</p>
+                            {/switch}
+                        {else}
+                            <p class="sklad" style="color:red">Zboží není skladem</p>
+                        {/if}
+                        <a class="popis" style="display:block;height: 90px;">{$product->description|noescape|striptags|truncate:160}</a>
+                        </p>
+                        <a href="{link Vyhledavani:produkt $product->id}" type="submit" id="echo 'add_cart'.$nb;?>" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;" class="btn btn-default add-to-cart cart add-t-c" value="" onclick="getElementById('add_carthp echo $nb;?>').style.display='none';getElementById('go_carthp echo $nb;?>').style.display='block'"><i class="fa fa-shopping-cart"></i>Zobrazit detail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/foreach}
+</div>

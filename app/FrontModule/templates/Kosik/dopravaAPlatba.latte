@@ -1,0 +1,60 @@
+{block title}Doprava a platba - krok č.1{/block}
+{block content}
+<div class="container" style="padding-top:150px; padding-bottom: 150px">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="font-weight-light" style="font-size: 27px">Doprava a platba</h1>
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            {if ceil($totalPrice) > 0}
+            {control shippingAndPaymentForm}
+            {else}
+                <label style="font-size: 18px">Košík je prázdný. Přidejte do košíku alespoň jeden produkt.</label>
+            {/if}
+        </div>
+        <div class="col-sm-4">
+            {if $productsInCart}
+                {foreach $productsInCart as $productInCart}
+                     {if $productInCart}
+                        <div class="col-sm-12" style="background: #f3f3f3;padding: 20px; border-radius: 4px">
+                            <div class="row">
+                                <div class="col-sm-5">
+                                    <a href="{link Produkt:default, $productInCart['id']}">
+                                        <img src="{$basePath}/img/produkty/{$productInCart['photo']}" alt="{$productInCart['productName']|noescape}" style="object-fit: cover;width:100%;border-radius: 4px">
+                                    </a>
+                                </div>
+                                <div class="col-sm-7">
+                                    <h2 class="font-weight-light" style="font-size: 20px;   ">{$productInCart['productName']|noescape}</h2>
+                                    <p style="font-size: 15px">
+                                        <b>Cena s DPH:</b> {$productInCart['catalogPriceVat']} Kč
+                                        <br>
+                                        <b>Množství:</b> {$productInCart['quantity']} Ks
+
+                                        <a href="{link addProductNumber! $productInCart['id']}"><i class="fa fa-plus fa-xs"></i> </a>
+                                        <a href="{link removeProductNumber! $productInCart['id']}" {if $productInCart['quantity']<2}onclick="return confirm('Opravdu chcete produkt odstranit z košíku?')"{/if}><i class="fa fa-minus fa-xs"></i></a>
+                                        <br>
+                                        <a href="{link removeProduct! $productInCart['id']}" style="font-size: 12px;">Odebrat z košíku</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                     {/if}
+                {/foreach}
+            {else}
+                Košík je prázdný
+            {/if}
+            <p style="font-size: 19px"><label class="font-weight-bold">Celkem s DPH:</label> {ceil($totalPrice)} Kč</p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var nav = document.getElementById('mainNav');
+    a = nav.getAttribute('class');
+    nav.setAttribute('class', a + ' navbar-shrink');
+    var navbarShrinked = true;
+</script>

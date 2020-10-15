@@ -1,0 +1,57 @@
+parameters:
+
+
+application:
+	errorPresenter: Error
+	mapping:
+		Back: Skeleton\BackModule\Presenters\*Presenter
+		Front: Skeleton\FrontModule\Presenters\*Presenter
+		*: App\*Module\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days
+
+
+services:
+	router: App\RouterFactory::createRouter
+	- Skeleton\Model\UserRegistrationService
+	- Skeleton\Model\Security\Authenticator
+	- Skeleton\FrontModule\Forms\INewQuoteFormFactory
+	- Skeleton\BackModule\Forms\ILoginFormFactory
+	- Skeleton\BackModule\Forms\IRegisterFormFactory
+	- Skeleton\BackModule\Forms\IEditParentCategoryFormFactory
+	- Skeleton\Model\EditParentCategoryService
+	- Skeleton\BackModule\Forms\IEditCategoryFormFactory
+	- Skeleton\Model\CategoryService
+	- Skeleton\BackModule\Forms\IEditProductFormFactory
+	- Skeleton\BackModule\Forms\IProductsListFormFactory
+	- Skeleton\BackModule\Forms\IAddProductFormFactory
+	- Skeleton\Model\ProductService
+	- Skeleton\BackModule\Forms\IAddCategoryFormFactory
+	- Skeleton\BackModule\Forms\ICategoryListFormFactory
+	- Skeleton\BackModule\Forms\IQuotesFormFactory
+	- Skeleton\BackModule\Forms\IOrdersFormFactory
+	- Skeleton\FrontModule\Forms\IShippingAndPaymentFormFactory
+	- Skeleton\FrontModule\Forms\IPersonalDataFormFactory
+	- Skeleton\Model\ShippingAndPaymentService
+	- Skeleton\Model\OrderService
+	- Skeleton\CronModule\Model\FeederService
+	- Skeleton\Model\QuoteService
+	- Skeleton\Model\AddProductService
+	- Skeleton\FrontModule\Forms\IAddProductFormFactory
+	- Skeleton\FrontModule\Forms\INewsletterFormFactory
+	- Skeleton\Model\NewsletterService
+	- Skeleton\FrontModule\Forms\IFindFormFactory
+	- Skeleton\BackModule\Forms\IWorkshopFormFactory
+	- Skeleton\BackModule\Forms\IArticleFormFactory
+	- Skeleton\Model\FindService
+	- Skeleton\Model\InvoiceService
+
+
+extensions:
+    dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+    orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
+
+orm:
+    model: Skeleton\Model\Orm

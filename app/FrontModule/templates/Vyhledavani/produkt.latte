@@ -1,0 +1,288 @@
+{block title}{$product->productName|noescape}{/block}
+{ifset $product->description}{block description}{$product->description|noescape}{/block}{/ifset}
+{block content}
+<div class="col-sm-12">{*PATH*}
+
+    <a href="{link UvodniStrana:default}">
+        <i class="fa fa-home" style="color:black"></i>
+    </a>
+
+    {foreach $categoryPath as $key=>$path}
+
+        {if $key!=$actualId}
+
+            <a style="color:black;text-decoration:none;font-weight:300;"><i class="fas fa-angle-right"></i></a><a href="{link VeterinarniVybaveni:kategorie $key}" style="color:black;text-decoration:none;font-weight:300;"><u>{$path}</u></a>
+
+        {else}
+
+            <a style="color:black;text-decoration:none;font-weight:300;"><i class="fas fa-angle-right"></i></a><a href="{link VeterinarniVybaveni:kategorie $key}" style="color:black;text-decoration:none;font-weight:300;">{$path}</a>
+
+        {/if}
+
+    {/foreach}
+
+    <a href="{link VeterinarniVybaveni:produkt $product->id}" style="color:black;"><i class="fas fa-angle-right"></i>{$product->productName|noescape}</a>
+
+</div>{*/PATH*}
+
+<div class="col-sm-12"> {*PRODUCT*}
+
+    <div class="product-details">{*PRODUCT DETAILS*}
+
+        <div class="col-sm-7">{*PRODUCT IMAGE*}
+
+            <div class="view-product">
+
+                <img src="{$basePath}/img/products/{$product->image}" onerror="this.src='/img/noimage.jpg'" alt="{$product->productName|noescape}" style="object-fit: none;cursor:pointer;" data-toggle="modal" data-target="#imgModal"/>
+
+                <div class="modal fade" id="imgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="width:75%">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">{$product->productName|noescape}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="{$basePath}/img/products/{$product->image}" onerror="this.src='/img/noimage.jpg'" alt="{$product->productName|noescape}" class="modal-img" alt="" style="height: auto;"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zavřít</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>{*/PRODUCT IMAGE*}
+
+        <div class="col-sm-5">{*PRODUCT INFO*}
+
+            <div class="product-information">
+
+                <h2>{$product->productName|noescape}</h2>
+                <p>ID: {$product->id}</p>
+                <p><b>Značka: </b>{$product->brandName|noescape}</p>
+                <p><b>Kategorie: </b><a href="{link VeterinarniVybaveni:kategorie, $product->category->id}" style="font-weight:300;color:black;text-decoration:underline">{$product->category->categorySingleName}</a></p>
+
+                <br>
+
+                <span class="number-wrapper" style="margin-bottom:0">
+                    <a style="color:black;font-size:30px;font-weight:500">{$product->catalogPriceVat} Kč </a><a style="color:black;font-weight:300;">včetně DPH</a>
+                    {*{if $product->retailPrice and $product->retailPrice > $product->catalogPriceVat and $product->retailPrice>1}<a style="font-weight:300;color:black;font-size:14px;">Doporučená cena: <s>{$product->retailPrice} Kč</s> Ušetříte {$product->retailPrice-$product->catalogPriceVat} Kč</a>{/if}*}
+                    <br>
+                    <br>
+
+                    <p style="font-weight:300;color:green;font-size:16px">
+                    {if $product->inStock}
+
+                        {switch $product->stockLevel}
+                            {case 0}
+                            <a style="color: rgb(255,96,0);font-size:16px">Skladem < 3 ks Ihned k odeslání</a>
+                            {case 3}
+                                <a style="color:#50bf16;font-size:16px">Skladem 3-9 ks Ihned k odeslání</a>
+                            {case 10}
+                                <a style="color:#50bf16;font-size:16px">Skladem > 9 ks Ihned k odeslání</a>
+                        {/switch}
+
+                        {*<a style="color:black;margin-top: 5px;display: block"><i class="fas fa-shipping-fast"></i> doručíme do {$deliveryDate|date:'%d.%m.%Y'}</a>*}
+
+                        {else}
+
+                        <a style="color:red;font-size:16px">Zboží není skladem</a>
+
+                    {/if}
+                    </p>
+                    <br>
+                    {if !$productInCart}
+                        {control addProductForm}
+                    {else}
+                        <a href="{link Kosik:default}" style="width: 100%;margin-left:0px;padding: 14px 10px;border-radius: 0;background:linear-gradient(to top,#13aa00,#06cd01 57%);" class="btn btn-default add-to-cart cart"><i class="fa fa-check"></i>Zboží čeká v košíku</a>
+                    {/if}
+
+                </span>
+
+            </div>
+
+        </div>{*/PRODUCT INFO*}
+
+    </div>{*/PRODUCT DETAILS*}
+
+</div>{*/PRODUCT*}
+
+<div class="col-sm-12" style="margin-top:40px">{*PRODUCT TABS*}
+
+    <div class="category-tab shop-details-tab">
+
+        <div class="col-sm-12">{*NAVIGATION*}
+            <ul class="nav nav-tabs" style="border:1px solid #0003;padding-bottom:1Px">
+                {if !$product->description}
+                    <li  class="active"style="text-align:center !important; width: 100%;background:white"><a href="#companyprofile" data-toggle="tab">Máte dotaz?</a></li>
+                    {*<li style="text-align:center !important;width: 50%;background:white"><a href="#reviews" data-toggle="tab">Hodnocení</a></li>*}
+                {else}
+                    <li class="active" style="text-align:center !important;background:white;width: 50%"><a href="#details" data-toggle="tab">Popis</a></li>
+                    <li style="text-align:center !important;background:white;width: 50%"><a href="#companyprofile" data-toggle="tab">Máte dotaz?</a></li>
+                    {*<li style="text-align:center !important;background:white"><a href="#reviews" data-toggle="tab">Hodnocení</a></li>*}
+                {/if}
+            </ul>
+        </div>{*/NAVIGATION*}
+
+        <div class="tab-content">{*TABS*}
+
+            <div class="tab-pane fade {$product->description?'active in':''}" id="details" >{*TAB - DESCRIPTION*}
+                <p>{$product->description|noescape}</p>
+            </div>{*/TAB - DESCRIPTION*}
+
+            <div class="tab-pane fade {$product->description?'':'active in'}" id="companyprofile" >{*TAB - HELP*}
+
+                <p>Potřebujete poradit? Využijte náš <b>Online chat v pravém dolním rohu</b>. Pokud zrovna nejsme online můžete použít <b>formulář</b> pod textem, nebo nám napsat <b>email</b> na <b>chakra.original@gmail.com</b></p>
+                {control newQuoteForm}
+
+            </div>{*/TAB - HELP*}
+
+            <div class="tab-pane fade" id="reviews">{*TAB - REVIEWS*}
+
+                <ul>
+                    <li><a href=""><i class="fa fa-user"></i>petr</a></li>
+                    <li><a href=""><i class="fa fa-clock-o"></i>cas</a></li>
+                    {*<li><a href=""><i class="fa fa-calendar-o"></i><?php echo $row_recenze['cas']; ?></a></li>*}
+                </ul>
+                <div class="col-md-12">
+                    <p>obsah</p>
+                </div>
+                <div class="col-md-6">
+                    <a style="color:black">+</a>
+                    <p>klady</p>
+                </div>
+                <div>
+                    <a style="color:black">-</a>
+                    <p>zapory</p>
+                </div>
+                <hr>
+                <p style='margin-top:15px'>K tomuto produktu dosud nebyla přidělena žádná recenze. Budte první! Napište svoji recenzi k produktu ".$row['jmeno_produkt']."</p><hr>
+                <p><b>Napište vaši recenzi</b></p>
+                <p>Po odeslání recenze vyčkejte až správci schváí vaši recenzi.</p>
+                <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                    <div class="form-group col-md-6">
+                        <input type="text" name="jmeno" class="form-control" required="required" placeholder="Jméno">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                    </div>
+                    <div class="form-group col-md-12">
+                        <textarea name="obsah" id="message" class="form-control" rows="8" placeholder="Obsah"></textarea>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <textarea name="klady" id="message" class="form-control" rows="8" placeholder="Klady"></textarea>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <textarea name="zapory" id="message" class="form-control" rows="8" placeholder="Zápory"></textarea>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <input type="submit" name="odeslat_recenzi" class="btn btn-primary pull-right" value="Přidat recenzi">
+                    </div>
+                </form>
+
+            </div>{*/TAB - REVIEWS*}
+
+        </div> {*/TABS*}
+
+    </div>
+
+</div>{*/PRODUCT TABS*}
+
+<div class="col-sm-12 recommended_items">{*RECOMMENDED ITEMS*}
+
+    <h2 class="text-center" style="font-weight:300;font-size:24px">Související produkty</h2>
+    <hr>
+
+    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+        {*<div class="carousel-inner">*}
+        <div class="col-sm-12">
+            {var $item=1}
+            {foreach $relatedProducts as $relatedProduct}
+                {*
+                <div class="item {$item==1?'active':''}">
+                    <div class="col-sm-4 product">
+                        <div class="product-image-wrapper">
+                            <div class="single-products">
+                                <div class="productinfo text-left">
+                                    <img src="{$basePath}/img/products/{$relatedProduct->image}{*products/photo/ad" onerror="this.src='/img/noimage.jpg'"  alt="{$relatedProduct->productName|noescape}" width="250" height="250" style="object-fit: contain;"/>
+                                    <hr style="margin:8px;">
+                                    <p>
+                                        <a href="{link VeterinarniVybaveni:produkt $relatedProduct->id}">{$relatedProduct->productName|noescape}</a>
+                                    <h2>{$relatedProduct->catalogPriceVat} Kč</h2>
+                                    {if $relatedProduct->inStock}
+                                        {switch $relatedProduct->stockLevel}
+                                            {case 0}
+                                            <p style="color: rgb(255,96,0);font-size: 14px">Skladem < 3 ks Ihned k odeslání</p>
+                                        {case 3}
+                                            <p style="color:#50bf16;font-size: 14px">Skladem 3-9 ks Ihned k odeslání</p>
+                                        {case 10}
+                                            <p style="color:#50bf16;font-size: 14px">Skladem > 9 ks Ihned k odeslání</p>
+                                        {/switch}
+                                    {else}
+                                        <p style="color:red;font-size: 14px">Zboží není skladem</p>
+                                    {/if}
+                                    <a class="popis" style="display:block;">{$product->description|noescape|striptags|truncate:160}</a>
+                                    </p>
+                                    <button type="submit" id="" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 60%;margin-left:10px;" class="btn btn-default add-to-cart cart add-t-c" value="" onclick="getElementById('add_cartcislo').style.display='none';getElementById('go_cartcislo').style.display='block'"><i class="fa fa-shopping-cart"></i>Přidat do košíku</button>
+                                    <button type="submit" id="" name="go-to-cart" style="display:none;border-radius:0;margin-top:5px;width: 60%;margin-left:10px;background:linear-gradient(to top,#13aa00,#06cd01 57%)" class="btn btn-default add-to-cart cart" value="" onclick="location.href='?p=Kosik'"><i class="fa fa-check"></i>Zboží čeká v košíku</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                *}
+                <div class="col-sm-3 product">
+                    <div class="product-image-wrapper">
+                        <div class="single-products">
+                            <div class="productinfo text-left">
+                                <a href="{link VeterinarniVybaveni:produkt $relatedProduct->id}"><img src="{$basePath}/img/products/{$relatedProduct->image}{*products/photo/ad*}" onerror="this.src='/img/noimage.jpg'"  alt="{$relatedProduct->productName|noescape}" width="250" height="250" style="object-fit: contain;"/></a>
+                                <hr style="margin:8px;">
+                                <p>
+                                    <a href="{link VeterinarniVybaveni:produkt $relatedProduct->id}" style="display:block;height: 60px">{$relatedProduct->productName|noescape}</a>
+                                <h2>{$relatedProduct->catalogPriceVat} Kč</h2>
+                                {if $relatedProduct->inStock}
+                                    {switch $relatedProduct->stockLevel}
+                                        {case 0}
+                                        <p style="color: rgb(255,96,0);font-size: 14px">Skladem < 3 ks Ihned k odeslání</p>
+                                    {case 3}
+                                        <p style="color:#50bf16;font-size: 14px">Skladem 3-9 ks Ihned k odeslání</p>
+                                    {case 10}
+                                        <p style="color:#50bf16;font-size: 14px">Skladem > 9 ks Ihned k odeslání</p>
+                                    {/switch}
+                                {else}
+                                    <p style="color:red;font-size: 14px">Zboží není skladem</p>
+                                {/if}
+                                <a class="popis" style="display:block;height: 90px">{$relatedProduct->description|noescape|striptags|truncate:160}</a>
+                                </p>
+                                {if !$relatedProduct->productInCart($relatedProduct->id, $session)}
+                                    <a href="{link addProductToCartFromProduct! $relatedProduct->id, $actualId}" type="submit" id="echo 'add_cart'.$nb;?>" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;" class="btn btn-default add-to-cart cart add-t-c" value="" onclick="getElementById('add_carthp echo $nb;?>').style.display='none';getElementById('go_carthp echo $nb;?>').style.display='block'"><i class="fa fa-shopping-cart"></i>Přidat do košíku</a>
+                                {else}
+                                    <a href="{link Kosik:dopravaAPlatba}" type="submit" id="echo 'add_cart'.$nb;?>" name="add_to_cart" style="border-radius:0;margin-top:5px;width: 70%;margin-left:10px;background:linear-gradient(to top,#13aa00,#06cd01 57%);" class="btn btn-default add-to-cart cart"><i class="fa fa-check"></i>Zboží čeká v košíku</a>
+                                {/if}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {if $item==3}
+                    {var $item=1}
+                {else}
+                    {var $item=$item+1}
+                {/if}
+            {/foreach}
+        </div>
+        {*
+        <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+        </a>
+        *}
+    </div>
+
+</div>{*/RECOMMENDED ITEMS*}

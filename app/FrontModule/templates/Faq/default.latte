@@ -1,0 +1,82 @@
+{block title}Nejčastější dotazy{/block}
+{block content}
+<div class="container" style="padding-top:150px; padding-bottom: 150px">
+    <div class="row">
+        <div class="col-sm-6">
+            <h1 class="font-weight-lighter">Nejčastější dotazy</h1>
+            <ol>
+                <li><a href="#" onclick="show(1)">Chakra & esoterika</a></li>
+                <li><a href="#" onclick="show(2)">Jak se o svůj Chakra starat?</a></li>
+                <li><a href="#" onclick="show(3)">Co jsou Chakra vajíčka?</a></li>
+                <li><a href="#" onclick="show(4)">Jak Chakra vajíčka používat?</a></li>
+                <li><a href="#" onclick="show(5)">Půjde pak vajíčko bez problémů vytáhnout?</a></li>
+                <li><a href="#" onclick="show(6)">Nejsou Chakra pomůcky studené?</a></li>
+                <li><a href="#" onclick="show(7)">Není používání minerálů k intimním účelům nebezpečné?</a></li>
+                <li><a href="#" onclick="show(8)">Jak si vybrat svůj Chakra?</a></li>
+            </ol>
+            <hr>
+            <br>
+            <h3 class="font-weight-lighter" id="question"></h3>
+            <br>
+            <p id="answer" style="font-size: 15px"></p>
+        </div>
+        <div class="col-sm-6">
+            {control newQuoteForm}
+        </div>
+    </div>
+</div>
+
+<script>
+    var nav = document.getElementById('mainNav');
+    a = nav.getAttribute('class');
+    nav.setAttribute('class', a + ' navbar-shrink');
+    var navbarShrinked = true;
+
+    function show(number) {
+
+        var text = '';
+        var question = '';
+
+        switch(number) {
+            case 1:
+                question = 'Chakra & esoterika\n';
+                text = 'Někdo v energii kamenů věří, jiný zase ne. My v Chakra jsme namíchaní z obou břehů (velmi tolerantních břehů) a zastáváme názor, že by se nikomu nic nemělo nutit proti jeho vůli. Pokud tedy nejste zrovna esoterický typ, můžete následující kapitolu přeskočit a nevěnovat jí pozornost. Jestliže však v magickou sílu polodrahokamů, minerálů a nejrůznějších krystalů věříte, připravili jsme pro vás základní informace o jednotlivých typech pomůcek Chakra a jejich energetickém čištění.\n' + ' \n' + 'Chakra pomůcky, jako kterékoliv jiné drahé kameny, mají svoji paměť. Pamatují si všechny energie, se kterými přišly do styku, a tyto energie můžou prakticky na kohokoliv zase přenést. Je proto bezpodmínečně nutné váš Chakra pravidelně čistit (a to nejen z hygienických důvodů, ale také energetických) a nabíjet.\n' + ' \n' + 'K energetickému čištění vaší Chakra pomůcky se nejlépe hodí vlažná tekoucí voda (případně potok), kterou nechte na kámen několik minut téct. Nezapomeňte svůj Chakra tímto způsobem ošetřit hned po zakoupení, před prvním použitím.\n' + ' \n' + ' \n' + 'AMETYST (Amethyst Spiritual)\n' + 'Ametyst je považován za jeden z nejmocnějších kamenů s ohromnou ochrannou silou, vysokými spirituálními vibracemi a silnou léčivou a očistnou mocí. Patří ke kamenům, které vyzařují ženskou energii - jemnou ženskou sílu a empatii. Tento Chakra by se neměl nabíjet na přímém slunci (na slunci ztrácí i svoji barvu), pro jeho energetické nabití doporučujeme raději měsíční svit.\n' + ' \n' + '​\n' + 'RŮŽENÍN (Rose quartz Self-love)\n' + 'Růženín se řadí mezi nejsilnější zesilovače energie mezi polodrahokamy a je považován za kámen srdce a lásky. Jako materiál pro pomůcky Chakra jsme ho vybrali zejména pro jeho schopnost učit sebelásce. Patří ke kamenům, které vyzařují ženskou energii - jemnou ženskou sílu, něžnost a harmonii. Tento Chakra by se neměl nabíjet na přímém slunci (na slunci ztrácí i svoji barvu), pro jeho energetické nabití doporučujeme raději měsíční svit.\n' + ' \n' + ' \n' + 'KŘIŠŤÁL (Crystal Clear)\n' + 'Křišťál je považován za kámen čistoty a nejúčinnější univerzální polodrahokam. Hraje důležitou roli při harmonizaci člověka jako celku, čistí duši a propojuje tělo s myslí.Patří ke kamenům, které v sobě spojují mužský i ženský princip – tvořivou sílu a průbojnost, ale i něžnost a empatii. Tento Chakra se díky dvojí polaritě může nabíjet jak na přímém slunci, tak v měsíčním světle.\n' + ' \n' + ' \n' + 'OBSIDIÁN (Obsidian Healing)\n' + 'Černý obsidián je ochranný kámen, jež jsme vybrali pro pomůcky Chakra pro jeho silně léčivé účinky. Vynáší z vašeho nejhlubšího nitra na povrch pravdu, odhaluje emocionální bloky a traumata a pomáhá je jednou pro vždy vyřešit. Patří ke kamenům vyzařujícím mužskou energii podporující proces léčení, odvahu a silnou vůli. Tento Chakra se nabíjí přímými slunečními paprsky, které mu opět vrátí jeho sílu.\n' + ' \n' + ' \n' + 'JADEIT (Jade Harmony)\n' + 'Bílý jadeit je posvátným kamenem Dálného východu přinášejícím klid a vyrovnanost. V takovém stavu pak pomáhá objevit moudrost a pochopení pro vše, co se kolem nás děje. Stabilizuje osobnost a uvádí duši do souladu s tělem. Patří ke kamenům vyzařujícím ženskou energii přinášející vnitřní mír a harmonii do naší duše. Tento Chakra se nabíjí přímými slunečními paprsky po libovolně dlouhou dobu.';
+                break;
+            case 2:
+                question = 'Jak se o svůj Chakra starat?';
+                text = 'Hned po doručení a rozbalení zásilky, prosím, zkontrolujte, že váš Chakra není nijak poškozený z přepravy. Praskliny a drobné částečky jiných minerálů (inkluze) uvnitř kamene jsou běžná kresba minerálů, dokonce je možné zabroušenou strukturu (citelnou nehtem) občas objevit i na povrchu kamene. Je to tím, že každý Chakra je ručně vyráběný z přírodního materiálu a ne odlévaný v továrně do formy. Pokud byste měli podezření na vadu výrobku, která není běžnou součástí přírodních minerálů, Chakra pomůcku nepoužívejte, kontaktujte nás a vraťte ji na naši adresu.\n' + ' \n' + 'Po kontrole vašeho Chakra jej důkladně (a raději dvakrát) omyjte teplou vodou a mýdlem a nechte samovolně oschnout. Doporučujeme vaši pomůcku takto čistit před každým použitím i po použití, a to mýdlem pro citlivou pokožku či mýdlem pro intimní hygienu, které nezapomeňte vždy důkladně opláchnout z vašeho Chakra proudem teplé vody.\n' + ' \n' + '! Nikdy vaši Chakra pomůcku nevkládejte do vroucí vody, může snadno dojít k jejímu prasknutí !';
+                break;
+            case 3:
+                question = 'Co jsou Chakra vajíčka?';
+                text = 'Chakra vajíčka (v originále tzv. yoni eggs) jsou polodrahokamy vybroušené do specifického tvaru vajíček různých velikostí, používané pro posílení svalů pánevního dna a kultivaci sexuální energie. Slovo „yoni“ pochází ze sanskrtu a označuje ženské genitálie, v doslovném překladu pak znamená „posvátné místo“.\n' + ' \n' + 'Odhaduje se, že ženy používají tato vajíčka už po více než 5 000 let. Císařovny a konkubíny královského paláce v Číně používaly vejce vyřezávaná z nefritu, aby získaly přístup k sexuální síle, probudily v sobě smyslnost a udržely si zdraví až do svého stáří. Až do nedávné doby byla tato stará tajná praxe dostupná pouze členům královské rodiny a vybraným praktikujícím taoismus.';
+                break;
+            case 4:
+                question = 'Jak Chakra vajíčka používat?';
+                text = 'Vložte Chakra vajíčko do pochvy silnějším koncem napřed (pokud jste zvyklá, použijte lubrikant) a uvolněně dýchejte. K nejzákladnějším cvikům patří vtahování Chakra vajíčka při nádechu pomocí svalů pánevního dna dovnitř, při výdechu naopak svaly povolujte a nechte vajíčko vyklouznout až k poševnímu vchodu. Cítit, jak ve vás vaše Chakra vajíčko putuje, vyžaduje určitý um a čas, proto buďte trpělivá a učte se naslouchat vlastnímu tělu.\n' + ' \n' + 'Chcete se o cvičení s Chakra vajíčky zajímat více do podrobností? My zde uvádíme jen naprostý základ, ale existují celé knihy o jejich historii, použití, zdravotních přínosech a cvicích. Doporučujeme například „How to use yoni eggs for sensual healing“ od Grace Diaz, která má i velmi zajímavý YouTube kanál.';
+                break;
+            case 5:
+                question = 'Půjde pak vajíčko bez problémů vytáhnout?';
+                text = 'Vzhledem k váze vajíčka a gravitaci vajíčko vyklouzne v podřepu a uvolněné poloze bez problémů samo ven. Nicméně pro rozplynutí i těch nejzákladnějších obav má každé vajíčko v sobě dírku s provlečeným provázkem pro snadné vytáhnutí ven, než si budete při cvičení s vašimi Chakra vajíčky dostatečně jistá.\n' + ' \n' + 'Mějte, prosím, na paměti, že dírka ve vajíčku i použití provázku vyžadují větší nároky na hygienické čištění a případnou výměnu provázku dle potřeby, abyste předešla případné infekci. Místo provázku je také možné použít zubní nit, kterou po použití vždy vyhodíte.';
+                break;
+            case 6:
+                question = 'Nejsou Chakra pomůcky studené?';
+                text = 'Jedná se o nejčastější otázku a nejobvyklejší obavu při prvním setkání s pomůckami Chakra. Nemusíte mít ale strach. Pokud by pocit z minerálů jako intimních pomůcek byl jakkoliv nepříjemný, značka Chakra by nikdy ani nevznikla. Polodrahokamy a minerály, ze kterých jsou pomůcky Chakra vyrobeny, přejímají díky svojí tepelné vodivosti teplo téměř 7x rychleji než například sklo. Proto rychle, snadno a téměř okamžitě převezmou teplotu okolního prostředí. Při prvním dotyku se sice zdají chladnější, ale okamžitě se zahřejí. Přesto pokud se chcete vyvarovat i prvního chladnějšího kontaktu, dejte váš Chakra pod teplou vodu, kde se během pár sekund díky své vysoké tepelné vodivosti zahřeje na teplotu, která vám bude příjemná a teplo, které bude po celou dobu používání vyzařovat, vám bude naopak příjemné.';
+                break;
+            case 7:
+                question = 'Není používání minerálů k intimním účelům nebezpečné?';
+                text = 'Pokud myslíte možný výskyt bakterií a jejich zachytávání se na povrchu minerálů, používání pomůcek Chakra z polodrahokamů jsme ještě před samotným spuštěním značky konzultovali se šesti gynekology. Všichni se shodují, že například za nehty máte mnohonásobně větší množství bakterií, než je schopno se na leštěném minerálu vůbec usadit. Navíc vaše tělo je přizpůsobené k tomu, aby si s běžným působením vnějšího světa hravě poradilo. Když tedy budete dodržovat základní hygienické čištění vaší Chakra pomůcky, vašemu tělu skutečně nehrozí vůbec nic.';
+                break;
+            case 8:
+                question = 'Jak si vybrat svůj Chakra?';
+                text= 'Mnozí vybírají léčivé kameny podle zvěrokruhu, data narození, tarotu, planet či podle jejich významu. My v Chakra tvrdíme jedno – věřte své intuici. Neposuzujte, nehodnoťte, nezapojujte rozum. Neexistuje jediná správná volba, žádné jedno doporučení. Naslouchejte sami sobě. Nechte na sebe pomůcky Chakra působit a zkoumejte, která s vámi rezonuje a která vás na první pohled zaujala. Věřte svému citu víc, než návodům z časopisů. Jen tak objevíte právě ten váš Chakra Original™, osobní, který dokáže léčit tělo i duši.\n' + '​\n' + 'Další, vaše velice časté dotazy se týkají toho, zda opravdu jsou naše výrobky ručně tvořené. Ano, jsou!\n' + 'Nám v Chakře na procesu výroby našich produktů velice záleží. Proto jsme například nezvolili nejlevnějšího výrobce, ale takového, který nás dokázal přesvědčit o tom, že naše produkty vznikají za spravedlivých podmínek jak pro zaměstnance, tak pro životní prostředí. \n' + 'Nejen ruční výrobou, ale třeba i tím, že maximální počet zaměstnanců je 6-11. Nejedná se teda o žádnou pásovou výrobu ani tovární kolos. Dalším důležitým aspektem byly i fotky z výroby, kde produkty vznikají ruční prací v prostředí, které je na míle vzdálené sériové výrobě v továrně.';
+                break;
+            default:
+                question = '';
+                text = '';
+                break;
+        }
+
+        document.getElementById('question').innerText = question;
+        document.getElementById('answer').innerText = text;
+    }
+</script>

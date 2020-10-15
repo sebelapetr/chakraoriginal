@@ -1,0 +1,71 @@
+{block title}Doprava a platba{/block}
+{block content}
+
+<div class="col-sm-12">
+    {*
+    <table class="doprava">
+        <caption>Doprava</caption>
+        <tr class="neviditelne"><td colspan="6"><p>Odeslanou objednávku vybavujeme tentýž den (pracovní) a další den ji expedujeme. <b>Doba dodání trvá 2-3 pracovní dny</b>.</p></td></tr>
+        <tr class="radek1"><td style="border:none;background:transparent;"></td><td colspan="3" style="text-align:center">do 3000 kč</td><td style="text-align:center">od 3000 Kč</td><!--<td style="border:none;background:transparent;"></td>--></tr>
+        <tr class="radek2"><td style="border:none;background:transparent;"></td><td>do 2 kg</td><td>do 10 kg</td><td> do 50 kg</td><td>do 50 kg</td><!--<td style="border:none;background:transparent;"></td>--></tr>
+        <tr> <!--class="doporucujeme"--><td>GEIS</td><td>85 Kč</td><td>95 Kč</td><td>105 Kč</td><td>ZDARMA</td><!--<td>Nejlepší poměr cena / kvalita!</td>--></tr>
+        <!--
+        <tr><td>Česká pošta balík do ruky</td><td>98 Kč</td><td>108 Kč</td><td>148 Kč</td><td>ZDARMA</td><td style="border:none;background:transparent;"></td></tr>
+        <tr><td>Česká pošta balík na poštu</td><td>88 Kč</td><td>98 Kč</td><td>138 Kč</td><td>ZDARMA</td><td style="border:none;background:transparent;"></td></tr>
+        <tr><td>DPD</td><td>92 Kč</td><td>114 Kč</td><td>155 Kč</td><td>ZDARMA</td><td style="border:none;background:transparent;"></td></tr>
+        <tr><td>Uloženka doručení na adresu</td><td>72 Kč</td><td>84 Kč</td><td>108 Kč</td><td>ZDARMA</td><td style="border:none;background:transparent;"></td></tr>
+        <tr class="doporucujeme"><td>Uloženka doručení na výdejní místo</td><td>54 Kč</td><td>65 Kč</td><td>90 Kč</td><td>ZDARMA</td><td>Nejlepší cena!</td></tr>
+        -->
+        <tr><td>Osobní odběr</td><td>ZDARMA</td><td>ZDARMA</td><td>ZDARMA</td><td>ZDARMA</td></tr>
+        <tr class="neviditelne"><td colspan="6">Při nákupu nad 3000 Kč je doprava zdarma při platbě bankovním převodem. Při platbě na dobírku je účtována částka 30 Kč.</td></tr>
+        <tr class="neviditelne"><td colspan="6">Stav objednávky můžete sledovat pomocí sledování zásilky u zvoleného dopravce. Odkaz na sledování zásilky Vám bude odeslán na email.</td></tr>
+    </table>
+    *}
+    <table class="doprava">
+        <caption>Doprava</caption>
+        <tr class="neviditelne"><td colspan="6"><p>Odeslanou objednávku vybavujeme tentýž den (pracovní) a další den ji expedujeme. <b>Doba dodání trvá 2-3 pracovní dny</b>.</p></td></tr>
+        <tr class="radek1"><td style="border:none;background:transparent;"></td><td style="text-align:center">do 3000 Kč</td><td style="text-align:center">od 3000 Kč</td><!--<td style="border:none;background:transparent;"></td>--></tr>
+        <tr> <!--class="doporucujeme"--><td>GEIS</td><td>98 Kč</td><td>ZDARMA</td><!--<td>Nejlepší poměr cena / kvalita!</td>--></tr>
+        <tr><td>Osobní odběr</td><td>ZDARMA</td><td>ZDARMA</td>
+        <tr class="neviditelne"><td colspan="6">Při nákupu nad 3000 Kč je doprava zdarma při platbě bankovním převodem. Při platbě na dobírku je účtována částka 30 Kč.</td></tr>
+        <tr class="neviditelne"><td colspan="6">Stav objednávky můžete sledovat v detailu Vaší objednávky. Odkaz detail Vaší objednávky Vám bude odeslán na email. O změně stavu objednávky budete informováni mailem.</td></tr>
+    </table>
+    <table class="doprava" id="platba">
+        <caption>Platba</caption>
+        <tr <!--class="doporucujeme"--><td>Bankovní převod</td><td>ZDARMA</td><!--<td>Nejlepší cena!</td>--></tr>
+        <tr><td>Dobírka</td><td>30 Kč</td><!--<td style="border:none;background:transparent;"></td>--></tr>
+        <tr class="neviditelne"><td colspan="4">Informace k platbě Vám budou odeslány na email.</td></tr>
+        <table class="doprava" style="margin:0">
+            <tr class="neviditelne"><td colspan="2">Fio banka a.s.</td></tr>
+            <tr class="neviditelne"><td>Číslo účtu:</td><td>2001461035/2010</td></tr>
+            <!--<tr class="neviditelne"><td>Specifický symbol:</td><td>0000</td></tr>-->
+            <tr class="neviditelne"><td>Variabilní symbol:</td><td colspan="3">Číslo objednávky, které Vám bude odesláno na email.</td></tr>
+        </table>
+    </table>
+</div>
+<div class="col-sm-12 proces">
+    <h3>Osobní odběr</h3>
+    <div class="col-sm-6">
+        <table class="doprava" style="margin:0">
+            <tr class="neviditelne"><td colspan="3">Bayerova 29</td></tr>
+            <tr class="neviditelne"><td colspan="3">602 00 Brno - střed</td></tr>
+            <tr class="radek1"><td>Den</td><td>Od</td><td>Do</td></tr>
+            <tr><td>Pondělí</td><td>8:30</td><td>16:30</td></tr>
+            <tr><td>Úterý</td><td>8:30</td><td>16:30</td></tr>
+            <tr><td>Středa</td><td>8:30</td><td>16:30</td></tr>
+            <tr><td>Čtvrtek</td><td>8:30</td><td>16:30</td></tr>
+            <tr><td>Pátek</td><td>8:30</td><td>16:30</td></tr>
+        </table>
+    </div>
+    <div class="col-sm-6" style="text-align:center">
+        <!--<img src="images/contact/provozovna.png" alt="provozovna" height="300"> -->
+        <div id="mapa" class="col-sm-12"></div>
+        <script type="text/javascript" src="{$basePath}/js/map.js"></script>
+    </div>
+</div>
+<!--
+<div class="col-sm-12 proces">
+  <h3>Proces doručení zásilky</h3>
+  <div class="col-sm-12"><img src="images/proces/proces.png" alt="proces objednávky" style="width:100%"></div>
+</div>
+-->

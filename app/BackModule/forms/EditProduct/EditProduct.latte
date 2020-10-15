@@ -1,0 +1,47 @@
+<script src="{$basePath}/ckeditor/ckeditor.js"></script>
+<form n:name="editProductForm" class="form" style="width: 100%">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Název</label>
+        <input n:name="name" class="form-control" id="exampleFormControlInput1" placeholder="Název" required>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Kod</label>
+        <input n:name="code" class="form-control" id="exampleFormControlInput1" placeholder="Kod">
+    </div>
+    <div class="form-group">
+        <label n:name="stock">Počet kusů na skladě: </label>
+        <input class="form-control" n:name="stock" placeholder="Ks">
+    </div>
+    <div class="form-group">
+        <label n:name="order">Váha pro seřazení v kategorii: </label>
+        <input class="form-control" n:name="order" placeholder="">
+    </div>
+    <div class="form-group">
+        <label n:name="price">Cena: </label>
+        <input class="form-control" n:name="price" placeholder="Cena (kč)">
+    </div>
+    <div class="form-group">
+        Nahrajte pouze v případě změny obrázku.
+        <br>
+        <label n:name="image">Obrázek: </label>
+        <input class="form-control" n:name="image" placeholder="Název produktu">
+    </div>
+    <div class="form-group">
+        <label n:name="description">Popis: </label>
+        <textarea class="form-control" n:name="description" placeholder="Popis produktu..." id="editor1"></textarea>
+    </div>
+    <div class="form-group">
+        <label n:name="visible">Viditelný: </label>
+        <select class="form-control" n:name="visible"></select>
+    </div>
+    <div class="form-group">
+        <label n:name="category">Kategorie: </label>
+        <select class="form-control" n:name="category"></select>
+    </div>
+    <div class="form-group">
+        <input class="form-control btn btn-primary" n:name="submit" value="Upravit produkt">
+    </div>
+</form>
+<script>
+    CKEDITOR.replace( 'editor1' );
+</script>

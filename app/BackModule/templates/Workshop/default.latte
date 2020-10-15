@@ -1,0 +1,33 @@
+{block content}
+<a n:href="Dashboard:default" class="btn btn-primary" style="margin-top: 15px"><i class="fas fa-chevron-left"></i> Zpět na přehled</a>
+<h2 style="margin-top: 30px">Správa workshopů</h2>
+<hr>
+<a n:href="Workshop:edit" class="btn btn-primary">Přidat workshop</a>
+<hr>
+<div class="col-sm-12" style="margin-top: 30px">
+    <div class="row">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Název</th>
+                <th>Vytvořen</th>
+                <th>Datum</th>
+                <th colspan="2" style="text-align: center">Akce</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $workshops as $workshop}
+                <tr>
+                    <td><b>{$workshop->id}</b></td>
+                    <td>{$workshop->title}</td>
+                    <td>{$workshop->createdAt|date:'d. m. Y H:i'}</td>
+                    <td>{$workshop->date}</td>
+                    <td><a href="{link Workshop:edit $workshop->id}" >Upravit</a></td>
+                    <td><a href="{link delete! $workshop->id}" >Smazat</a></td>
+                </tr>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
+</div>

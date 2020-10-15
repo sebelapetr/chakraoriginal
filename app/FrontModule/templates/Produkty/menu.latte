@@ -1,0 +1,8 @@
+<div class="col-sm-4">
+    <h2 class="font-weight-light" style="font-size: 20px">Kategorie:</h2>
+    <ul class="list-group list-group-flush" style="width: 80%">
+        {foreach $categories as $categoryMenu}
+            <a href="{link Produkty:default, $categoryMenu->category->id}"><li class="list-group-item menu-item-category" {if isset($category) && $categoryMenu->category->id === $category->id}style="background: #402c7914"{/if}>{$categoryMenu->category->categoryName} {*<img src="{$basePath}/img/{$categoryMenu->category->image}" height="22" class="float-right">*}</li></a>
+        {/foreach}
+    </ul>
+</div>

@@ -1,0 +1,46 @@
+{block title}{$article->title}{/block}
+{block content}
+<div class="container" style="padding-top:150px; padding-bottom: 150px">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="font-weight-lighter">Blog</h1>
+            <hr>
+            <br>
+        </div>
+    </div>
+
+    <div class="row">
+
+        {*
+        <div class="col-sm-4">
+            <h2 class="font-weight-light" style="font-size: 20px">Kategorie:</h2>
+            <ul class="list-group list-group-flush" style="width: 80%">
+                {foreach $articleCategories as $articleCategory}
+                    <a href="{link Blog:default, $articleCategory->id}"><li class="list-group-item menu-item-category" {if isset($category) && $categoryMenu->category->id === $category->id}style="background: #402c7914"{/if}>{$articleCategory->name}</li></a>
+                {/foreach}
+            </ul>
+        </div>
+*}
+        <div class="col-sm-12">
+            <div class="col-sm-12" style="background: #f3f3f3;padding: 20px; border-radius: 4px">
+                <img src="{$basePath}/img/clanky/{$article->image}"  style="height:350px;width: 100%;object-fit: cover;border-radius: 4px">
+                <br><br>
+                <h2 class="font-weight-light" style="font-size: 28px">{$article->title}</h2>
+                <p style="font-size: 15px">{$article->createdAt|date:'d. m. Y'} {*| {$article->articleCategory->name}*}</p>
+                <p style="font-size: 14px">{$article->description|noescape}</p>
+            </div>
+            <br>
+            <a href="{link Blog:default}" class="product-detail-waiting-cart"><i class="fa fa-chevron-left"></i> Všechny články</a>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var nav = document.getElementById('mainNav');
+    a = nav.getAttribute('class');
+    nav.setAttribute('class', a + ' navbar-shrink');
+    var navbarShrinked = true;
+</script>

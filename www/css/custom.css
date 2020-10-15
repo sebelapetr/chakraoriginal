@@ -1,0 +1,27 @@
+#mainpage-photo {
+    display: none;
+    margin: 0 auto;
+}
+.mobile-div {
+    display: none;
+    margin: 0 auto;
+}
+@media (min-width: 992px) {
+    #mainpage-photo {
+        display: block;
+    }
+    .mobile-div {
+        display: block;
+    }
+}
+
+.registerFormInput {
+    border: 1px solid #c5c5c5;
+    border-radius: 5px;
+}
+
+#registerForm label {
+    font-weight: normal;
+    padding: 2px;
+    margin: 5px;
+}
